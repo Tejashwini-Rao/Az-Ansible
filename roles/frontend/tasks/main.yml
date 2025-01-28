@@ -10,7 +10,7 @@
     state: installed
 
 - name: Copy nginx conf file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
     remote_src: true
