@@ -3,7 +3,8 @@
 #  roles:
  #   - "{{ app_name }}"
 
-- name: Setup roboshop
-- hosts: localhost
+- name: Setup Roboshop
+  hosts: localhost
+
 
 
