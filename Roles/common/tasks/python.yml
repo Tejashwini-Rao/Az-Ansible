@@ -1,0 +1,24 @@
+- name: Install the latest version of python
+  ansible.builtin.dnf:
+    name:
+      - python3
+      - gcc
+      - python3-devel
+    state: installed
+
+
+- name: Include task pre-app
+  ansible.builtin.include_tasks:
+    file: pre-app
+
+- name: Add the user roboshop
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Install specified python requirements
+  ansible.builtin.pip:
+    requirements: /app/requirements.txt
+
+- name: Include systemd
+  ansible.builtin.include_tasks:
+    file: systemd.yml

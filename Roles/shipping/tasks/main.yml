@@ -1,0 +1,26 @@
+- name: Include Nodejs role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: java
+
+- name: Install the latest version of mysql
+  ansible.builtin.dnf:
+    name:
+      - mysql
+      - python3-mysqlclient
+    state: installed
+
+- name: Import dump.sql
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    login_user: root
+    login_host: mysql-dev.devopst77.online
+    login_password: RoboShop@1
+    target: "{{item}}"
+  loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
+
+

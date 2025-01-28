@@ -1,0 +1,22 @@
+- name: Disable nodejs
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: Enable nodejs
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: Install the latest version of nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: installed
+
+- name: Install maven dependencies
+  community.general.npm:
+    path: /app
+
+- name: Include task pre-app
+  ansible.builtin.include_tasks:
+    file: pre-app
+
+- name: Include systemd
+  ansible.builtin.include_tasks:
+    file: systemd.yml

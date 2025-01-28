@@ -1,0 +1,23 @@
+
+- name: Install the latest version of maven
+  ansible.builtin.dnf:
+    name: maven
+    state: installed
+
+- name: Include task pre-app
+  ansible.builtin.include_tasks:
+    file: pre-app
+
+- name: Include systemd
+  ansible.builtin.include_tasks:
+    file: systemd.yml
+
+- name: Install maven dependencies
+  ansible.builtin.shell: mvn clean package ; mv target/"{{app_name}}"-1.0.jar "{{app_name}}".jar
+  args:
+    chdir: /app
+
+- name: Include systemd
+  ansible.builtin.include_tasks:
+    file: systemd.yml
+

@@ -1,0 +1,23 @@
+- name: Include Nodejs role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+
+
+- name: Copy mongo repo
+  ansible.builtin.template:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install the latest version of mongodb
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: installed
+
+
+- name: Load mongo data
+  community.mongodb.mongodb_shell:
+    login_host:  mongodb-dev.devopst77.online
+    file: "/app/db/master-data.js"
+    idempotent: yes
+

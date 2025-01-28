@@ -1,0 +1,28 @@
+- name: Add the user roboshop
+  ansible.builtin.user:
+    name: roboshop
+    become: yes
+
+- name: Copy "{{app_name}}".service file
+  ansible.builtin.template:
+    src: "{{app_name}}".service
+    dest: /etc/systemd/system/"{{app_name}}".service
+
+- name:  Remove directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Create a directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+
+- name: Downoad "{{app_name}}" content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/"{{app_name}}"-v3.zip
+    dest: /app
+    remote_src: yes
+
+
