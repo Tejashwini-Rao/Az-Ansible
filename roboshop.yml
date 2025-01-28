@@ -1,10 +1,9 @@
-#- name: Setup roboshop
-#  hosts: all
-#  roles:
- #   - "{{ app_name }}"
+- name: Setup roboshop
+  hosts: all
+  roles:
+   - "{{ app_name }}"
 
-- name: Setup Roboshop
-  hosts: localhost
+
 
 
 
