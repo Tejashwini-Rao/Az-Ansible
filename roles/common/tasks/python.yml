@@ -18,6 +18,7 @@
 - name: Install specified python requirements
   ansible.builtin.pip:
     requirements: /app/requirements.txt
+    executable: pip3
 
 - name: Include systemd
   ansible.builtin.include_tasks:
