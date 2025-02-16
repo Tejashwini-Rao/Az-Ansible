@@ -21,7 +21,7 @@
     state: present
 
 - name: Copy "{{app_name}}".service file
-  ansible.builtin.template:
+  ansible.builtin.templates:
     src: catalogue.service
     dest: /etc/systemd/system/"{{app_name}}".service
     remote_src: yes
