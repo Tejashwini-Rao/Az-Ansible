@@ -21,7 +21,7 @@
 
 - name: Copy "{{app_name}}".service file
   ansible.builtin.template:
-    src: "{{app_name}}".service
+    src: catalogue.service
     dest: /etc/systemd/system/"{{app_name}}".service
 
 - name:  Remove directory
