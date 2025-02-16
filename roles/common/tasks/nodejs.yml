@@ -24,6 +24,7 @@
   ansible.builtin.template:
     src: catalogue.service
     dest: /etc/systemd/system/"{{app_name}}".service
+    remote_src: yes
 
 - name:  Remove directory
   ansible.builtin.file:
