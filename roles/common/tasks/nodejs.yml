@@ -21,6 +21,7 @@
     state: present
 
 - name: Copy catalogue.service file
+  become: yes
   ansible.builtin.template:
     src: catalogue.service
     dest: /etc/systemd/system/catalogue.service
