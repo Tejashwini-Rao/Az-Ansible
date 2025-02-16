@@ -15,9 +15,10 @@
     path: /app
 
 - name: Add the user roboshop
+  become: yes
   ansible.builtin.user:
     name: roboshop
-    become: yes
+    state: present
 
 - name: Copy "{{app_name}}".service file
   ansible.builtin.template:
