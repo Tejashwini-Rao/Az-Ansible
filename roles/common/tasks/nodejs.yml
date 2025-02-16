@@ -20,10 +20,10 @@
     name: roboshop
     state: present
 
-- name: Copy "{{app_name}}".service file
+- name: Copy catalogue.service file
   ansible.builtin.templates:
     src: catalogue.service
-    dest: /etc/systemd/system/"{{app_name}}".service
+    dest: /etc/systemd/system/catalogue.service
     remote_src: yes
 
 - name:  Remove directory
@@ -37,9 +37,9 @@
     state: directory
 
 
-- name: Downoad "{{app_name}}" content
+- name: Downoad catalogue content
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/"{{app_name}}"-v3.zip
+    src: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
     dest: /app
     remote_src: yes
 
